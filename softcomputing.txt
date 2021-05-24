@@ -1,5 +1,6 @@
 Welcome to my page
-I have written a python code for crisp and fuzzy relation
+I have written a python code for crisp relation
+The program is created for same number of sets
 The program is dynamic 
 defined different fuctions
 Each level of output is displayed with different colors
