@@ -1,2 +1,2 @@
-# Crisp-and-fuzzy-relations
-python program for crisp and fuzzy relations
+# composition operation for crisp relation
+python program for crisp relation
