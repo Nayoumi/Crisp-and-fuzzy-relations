@@ -1,0 +1,6 @@
+Welcome to my page
+I have written a python code for crisp and fuzzy relation
+The program is dynamic 
+defined different fuctions
+Each level of output is displayed with different colors
+For displaying colors installed colorama(pip install colarama)
