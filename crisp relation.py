@@ -1,4 +1,3 @@
-###python program for crisp relation, the program is to generate the composition operation for crisp relation. 
 import numpy as np
 from colorama import Fore
 
@@ -22,7 +21,6 @@ def UserInput():
   print("Y = {",listY,"}")
   CartesianProduct(listX,listY) ## passing the listX and listY to Cartesianproduct function
   crisprelationRS(listX,listY)## passing the listX and listY to crisprelationRS function
-  RSMatrix(listX,listY)## passing the listX and listY to RSMatrix function
 
 ###This function creates cartesian product of two sets
 def CartesianProduct(listX,listY):
@@ -33,17 +31,15 @@ def CartesianProduct(listX,listY):
     for m in listY:
       print((k,m),end=",")
   print("}")
-
-#### This function creates a crisp relation for R and S 
-def crisprelationRS(listX,listY):
   print()
-  print(Fore.GREEN+"R relation: ")
+  print("R relation:")
   print("{",end="")
   for k in listX:
     for m in listY:
-      if (k+2==m): ### Here you can change the conditions
+      if (k+2==m):
         print((k,m),end=",")
   print("}")
+  
   print()
   print("S relation: ")
   print("{",end="")
@@ -52,32 +48,29 @@ def crisprelationRS(listX,listY):
       if (k<m):
         print((k,m),end=",")
   print("}")
-### This function is used to generate R and S matrices
-def RSMatrix(listX,listY):
+
+#### This function creates a crisp relation for R and S ,generates matrices for R and S
+def crisprelationRS(listX,listY):
   print()
-  print(Fore.MAGENTA)
-  print("Enter rows and columns matched values for R: ")
-  m = []
-  for n in range(len(listX)):
-    matrix=[]
-    for o in range(len(listX)):
-      print("Enter the value for: ",(listX[n],listY[o]))
-      matrix.append(int(input()))
-    m.append(matrix)
-  R_matrix = np.array(m)
-  print("R matrix is : \n",R_matrix)
+  print(Fore.GREEN+"R Matrix: ")
+  new_R=[]
+  new_S=[]
+  for x in listX:
+    for y in listY:
+      if (y==x+2):
+        new_R.append(1)
+      else:
+        new_R.append(0)
+      if (x<y):
+        new_S.append(1)
+      else:
+        new_S.append(0)
+  R_matrix = np.array(new_R).reshape(len(listX),len(listY))
+  S_matrix = np.array(new_S).reshape(len(listX),len(listY))
+  print(R_matrix)
   print()
-  print(Fore.LIGHTGREEN_EX)
-  print("Enter rows and columns matched values for S: ")
-  m1 = []
-  for n in range(len(listX)):
-    matrix1=[]
-    for o in range(len(listY)):
-      print("Enter the value for: ",(listX[n],listY[o]))
-      matrix1.append(int(input()))
-    m1.append(matrix1)
-  S_matrix = np.array(m)
-  print("S matrix is : \n",S_matrix)
+  print("S Matrix")
+  print(S_matrix)
   MinOperation(R_matrix,S_matrix)## passing the R_matrix and S_matrix to MinOperation function
 
 ###This function is used to find the minimum operation  in composition operation  
@@ -90,7 +83,6 @@ def MinOperation(R_matrix,S_matrix):
        for k in range(len(S_matrix)):
           min_list.append(min(R_matrix[i][k] , S_matrix[k][j]))
   A=np.array(min_list).reshape(len(R_matrix)*len(R_matrix),len(S_matrix))
-  print()
   print(Fore.LIGHTRED_EX+"Minimum operation (Ros): ")
   print(A)
   MaxOperation(A,R_matrix,S_matrix) ## passing the A list,R_matrix and S_matrix to MaxOperation function
@@ -107,3 +99,5 @@ def MaxOperation(A,R_matrix,S_matrix):
   print(B)
 
 UserInput() ### calling the userInput function
+
+
